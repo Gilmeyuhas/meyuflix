@@ -1,8 +1,4 @@
-# meyuflix-helm
-
----
-
-# Home Cluster – Self-Hosted Media Stack on K3s
+# MeyuFlix – Self-Hosted Media Stack on K3s
 
 This repository contains the declarative configuration for my **self-hosted home media environment**, deployed on a single-node [**K3s**](https://k3s.io/) Kubernetes cluster running on Ubuntu 24.04 Server.
 
