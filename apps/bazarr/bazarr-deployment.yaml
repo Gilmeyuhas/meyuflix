@@ -8,40 +8,38 @@ spec:
   selector:
     matchLabels:
       app: bazarr
-  strategy:
-    type: Recreate  
   template:
     metadata:
       labels:
         app: bazarr
     spec:
       containers:
-      - name: bazarr
-        image: lscr.io/linuxserver/bazarr:latest   # Bazarr image (LinuxServer.io)
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 6767                      # Bazarr's internal web UI port
-          name: http-web
-        env:
-        - name: TZ
-          value: "Asia/Jerusalem"
-        - name: PUID
-          value: "1000"                            # User ID to run Bazarr as.
-        - name: PGID
-          value: "1000"                            # Group ID for Bazarr process.
-        volumeMounts:
-        - name: config
-          mountPath: /config                       # Mount for Bazarr config data.
+        - name: bazarr
+          image: ghcr.io/linuxserver/bazarr:latest
+          ports:
+            - containerPort: 6767
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config
+            - name: media-volume
+              mountPath: /mnt
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Asia/Jerusalem"
+            - name: HTTP_PROXY
+              value: "http://192.168.1.148:3128"
+            - name: HTTPS_PROXY
+              value: "http://192.168.1.148:3128"
       volumes:
-      - name: config
-        persistentVolumeClaim:
-          claimName: bazarr-config-claim           # PVC for config
-      - name: movies
-        hostPath:
-          path: "/mnt/Movies"                      # Host path for Movies (quotes because of space or case).
-          type: DirectoryOrCreate
-      - name: tv
-        hostPath:
-          path: "/mnt/TV Shows"                    # Host path for TV Shows
-          type: DirectoryOrCreate
+        - name: config-volume
+          persistentVolumeClaim:
+            claimName: bazarr-config-claim
+        - name: media-volume
+          hostPath:
+            path: /mnt
+            type: Directory
 

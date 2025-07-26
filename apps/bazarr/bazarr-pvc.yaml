@@ -6,8 +6,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: ""        # Match the PV's storageClassName
   resources:
     requests:
       storage: 1Gi
+  volumeName: bazarr-config-pv
 

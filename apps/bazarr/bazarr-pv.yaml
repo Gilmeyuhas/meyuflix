@@ -4,12 +4,13 @@ metadata:
   name: bazarr-config-pv
 spec:
   capacity:
-    storage: 1Gi                      # Size is arbitrary for hostPath, but required.
+    storage: 1Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: ""               # Empty to indicate a manual PV (no dynamic provision)
+  claimRef:
+    namespace: apps
+    name: bazarr-config-claim
   hostPath:
-    path: "/mnt/bazarr-config"       # Host path for config.
-    type: DirectoryOrCreate          # Create directory if it doesn't exist.
+    path: /opt/bazarr/data
 
