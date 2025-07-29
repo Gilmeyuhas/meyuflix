@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jellyseerr
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jellyseerr
+  template:
+    metadata:
+      labels:
+        app: jellyseerr
+    spec:
+      containers:
+        - name: jellyseerr
+          image: fallenbagel/jellyseerr:latest
+          ports:
+            - containerPort: 5055
+          env:
+            - name: TZ
+              value: "Asia/Jerusalem"
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "5055"
+            - name: EXTERNAL_URL
+              value: "http://192.168.1.148:31055"
+            - name: JELLYFIN_HOST
+              value: "http://192.168.1.148:31055"
+          volumeMounts:
+            - name: config
+              mountPath: /app/config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: jellyseerr-config
+
