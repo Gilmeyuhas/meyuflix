@@ -1,0 +1,31 @@
+# profilarr-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profilarr
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profilarr
+  template:
+    metadata:
+      labels:
+        app: profilarr
+    spec:
+      containers:
+        - name: profilarr
+          image: santiagosayshey/profilarr:latest
+          ports:
+            - containerPort: 6868
+          env:
+            - name: TZ
+              value: "Asia/Jerusalem"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: profilarr-config-claim

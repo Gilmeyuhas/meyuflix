@@ -1,0 +1,15 @@
+# profilarr-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: profilarr
+  namespace: apps
+spec:
+  selector:
+    app: profilarr
+  ports:
+    - name: http
+      port: 6868
+      targetPort: 6868
+      protocol: TCP
+  type: ClusterIP

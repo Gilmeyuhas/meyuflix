@@ -1,0 +1,14 @@
+# profilarr-pv.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: profilarr-config-pv
+  namespace: apps
+spec:
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  hostPath:
+    path: /opt/profilarr/config

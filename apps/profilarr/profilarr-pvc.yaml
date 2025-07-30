@@ -1,0 +1,14 @@
+# profilarr-pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: profilarr-config-claim
+  namespace: apps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  volumeName: profilarr-config-pv
+  storageClassName: ""
