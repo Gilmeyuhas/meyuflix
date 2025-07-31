@@ -6,18 +6,18 @@ Each application is either deployed using **Helm** (with `bjw-s/app-template`) o
 
 ## 📦 Stack Overview
 
-| App           | Purpose                         | Deployment Type     | Config Path                          |
-|----------------|----------------------------------|----------------------|----------------------------------------|
-| [Bazarr](https://www.bazarr.media/)       | Subtitle downloader           | [Raw Manifests](./apps/bazarr)     | [`apps/bazarr`](./apps/bazarr)            |
-| Sonarr        | TV episode automation            | `bjw-s/app-template` | [`apps/sonarr`](./apps/sonarr)        |
-| Radarr        | Movie automation                 | `bjw-s/app-template` | [`apps/radarr`](./apps/radarr)        |
-| qBittorrent   | Torrent client (headless)        | `bjw-s/app-template` | [`apps/qbittorrent`](./apps/qbittorrent) |
-| Prowlarr      | Indexer manager                  | `bjw-s/app-template` | [`apps/prowlarr`](./apps/prowlarr)    |
-| [Jellyseerr](https://github.com/Fallenbagel/jellyseerr) | Media request interface     | [Raw Manifests](./apps/jellyseerr)  | [`apps/jellyseerr`](./apps/jellyseerr)    |
-| [Profilarr](https://github.com/saswatds/profilarr)     | Quality profile sync         | [Raw Manifests](./apps/profilarr)   | [`apps/profilarr`](./apps/profilarr)      |
-| [Homarr](https://github.com/ajnart/homarr)         | Home dashboard                 | [Raw Manifests](./apps/homarr)      | [`apps/homarr`](./apps/homarr)            |
-| [Flaresolverr](https://github.com/FlareSolverr/FlareSolverr) | CAPTCHA bypasser       | [Raw Manifests](./apps/flaresolverr) | [`apps/flaresolverr`](./apps/flaresolverr) |
-| [Dashdot](https://github.com/MauriceNino/dashdot)         | Node dashboard                 | [Raw Manifests](./apps/dashdot)     | [`apps/dashdot`](./apps/dashdot)          |
+| App           | Purpose                         | Deployment Type     | Config Path                          | Migrated |
+|----------------|----------------------------------|----------------------|----------------------------------------|----------|
+| [Bazarr](https://www.bazarr.media/)       | Subtitle downloader           | [Raw Manifests](./apps/bazarr)     | [`apps/bazarr`](./apps/bazarr)            | ✅ |
+| Sonarr        | TV episode automation            | `bjw-s/app-template` | [`apps/sonarr`](./apps/sonarr)        | ❌ |
+| Radarr        | Movie automation                 | `bjw-s/app-template` | [`apps/radarr`](./apps/radarr)        | ❌ |
+| qBittorrent   | Torrent client (headless)        | `bjw-s/app-template` | [`apps/qbittorrent`](./apps/qbittorrent) | ❌ |
+| Prowlarr      | Indexer manager                  | `bjw-s/app-template` | [`apps/prowlarr`](./apps/prowlarr)    | ❌ |
+| [Jellyseerr](https://github.com/Fallenbagel/jellyseerr) | Media request interface     | [Raw Manifests](./apps/jellyseerr)  | [`apps/jellyseerr`](./apps/jellyseerr)    | ✅ |
+| [Profilarr](https://github.com/saswatds/profilarr)     | Quality profile sync         | [Raw Manifests](./apps/profilarr)   | [`apps/profilarr`](./apps/profilarr)      | ✅ |
+| [Homarr](https://github.com/ajnart/homarr)         | Home dashboard                 | [Raw Manifests](./apps/homarr)      | [`apps/homarr`](./apps/homarr)            | ❌ |
+| [Flaresolverr](https://github.com/FlareSolverr/FlareSolverr) | CAPTCHA bypasser       | [Raw Manifests](./apps/flaresolverr) | [`apps/flaresolverr`](./apps/flaresolverr) | ❌ |
+| [Dashdot](https://github.com/MauriceNino/dashdot)         | Node dashboard                 | [Raw Manifests](./apps/dashdot)     | [`apps/dashdot`](./apps/dashdot)          | ❌ |
 
 ## Current Status
 This is a work in progress. My current non-kubernetes setup works. Some services are not yet migrated to this environment, and their files are not here, unless work has already begun on the transfer. This is a hobby, and I am not experienced in K8s, so do not take anything you see here as guides or best practices. If it helps you in any way, then I am more than happy to help, but know that this may not be the best way to do this.
