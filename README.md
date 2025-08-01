@@ -17,7 +17,7 @@ Each application is either deployed using **Helm** (with `bjw-s/app-template`) o
 | [Profilarr](https://github.com/saswatds/profilarr)     | Quality profile sync         | [Raw Manifests](./apps/profilarr)   | [`apps/profilarr`](./apps/profilarr)      | ✅ |
 | [Homarr](https://github.com/ajnart/homarr)         | Home dashboard                 | [Raw Manifests](./apps/homarr)      | [`apps/homarr`](./apps/homarr)            | ✅ |
 | [Kubernetes-Dashboard](https://github.com/kubernetes/dashboard) | Dashboard for K8s       | [Raw Manifests](./apps/kubernetes-dashboard/) | [`apps/kubernetes-dashboard`](./apps/kubernetes-dashboard/) | ✅ |
-| [Dashdot](https://github.com/MauriceNino/dashdot)         | Node dashboard                 | [Raw Manifests](./apps/dashdot)     | [`apps/dashdot`](./apps/dashdot)          | ❌ |
+| [Dashdot](https://github.com/MauriceNino/dashdot)         | Node metrics dashboard, used here as an integration in homarr                 | [Raw Manifests](./apps/dashdot)     | [`apps/dashdot`](./apps/dashdot)          | ✅ |
 
 ## Current Status
 This is a work in progress. My current non-kubernetes setup works. Some services are not yet migrated to this environment, and their files are not here, unless work has already begun on the transfer. This is a hobby, and I am not experienced in K8s, so do not take anything you see here as guides or best practices. If it helps you in any way, then I am more than happy to help, but know that this may not be the best way to do this.

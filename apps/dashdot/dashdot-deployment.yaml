@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashdot
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashdot
+  template:
+    metadata:
+      labels:
+        app: dashdot
+    spec:
+      containers:
+      - name: dashdot
+        image: mauricenino/dashdot:latest
+        env:
+        - name: DASHDOT_PORT
+          value: "3001"
+        ports:
+        - containerPort: 3001                # Dashdot's internal port
+        securityContext:
+          privileged: true                  # allow low-level host access
+        volumeMounts:
+        - name: config
+          mountPath: /app/config            # probably not needed but fuck it
+        - name: host-root
+          mountPath: /mnt/host
+          readOnly: true                    # mount host filesystem read-only
+      volumes:
+      - name: config
+        persistentVolumeClaim:
+          claimName: dashdot-config-claim
+      - name: host-root
+        hostPath:
+          path: "/"
+          type: Directory                   # mount host root
+
