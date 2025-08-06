@@ -4,14 +4,10 @@ metadata:
   name: jellyseerr
   namespace: apps
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  tls:
-  - hosts:
-    - jellyseerr.home
-    secretName: home-wildcard-tls
   rules:
-    - host: jellyseerr.home
+    - host: jellyseerr.meyuhas.me
       http:
         paths:
           - path: /

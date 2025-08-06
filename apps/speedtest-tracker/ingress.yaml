@@ -1,21 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: bazarr
+  name: speedtest
   namespace: apps
   annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: web
+    kubernetes.io/ingress.class: traefik
 spec:
-  ingressClassName: traefik
   rules:
-    - host: bazarr.home
+    - host: speedtest.home
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: bazarr
+                name: speedtest-tracker
                 port:
-                  number: 80
+                  number: 8765
 

@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: profilarr.local
+    - host: profilarr.home
       http:
         paths:
           - path: /
