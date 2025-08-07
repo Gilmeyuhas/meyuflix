@@ -1,0 +1,41 @@
+# Tdarr Helm values.yaml
+image:
+  repository: ghcr.io/haveagitgat/tdarr
+  tag: latest
+
+env:
+  PUID: "1000"
+  PGID: "1000"
+  TZ: "Asia/Jerusalem"
+
+## Disable Helm-managed ingress (we'll use our own ingress manifest)
+ingress:
+  main:
+    enabled: false
+
+## Persistence volumes for config, database, and media
+persistence:
+  config:
+    enabled: true
+    existingClaim: tdarr-config-claim
+  data:
+    enabled: true
+    existingClaim: tdarr-data-claim
+  media:
+    enabled: true
+    mountPath: "/mnt"
+    existingClaim: tdarr-media-claim
+  shared:
+    enabled: true
+    emptyDir: {}
+
+## Name override to simplify resource names
+fullnameOverride: "tdarr"
+
+## Make sure node uses correct version
+node:
+  enabled: true
+  image:
+    repository: ghcr.io/haveagitgat/tdarr_node
+    tag: 2.45.01
+

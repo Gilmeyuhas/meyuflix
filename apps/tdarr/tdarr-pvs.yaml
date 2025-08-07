@@ -1,0 +1,48 @@
+# Tdarr Config PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tdarr-config-pv
+  namespace: apps
+spec:
+  capacity: 
+    storage: 1Gi 
+  accessModes: 
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""           # no dynamic provisioner (hostPath)
+  hostPath:
+    path: "/opt/tdarr/config"    # host path for Tdarr config
+---
+# Tdarr Data PV (for database, etc.)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tdarr-data-pv
+  namespace: apps
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  hostPath:
+    path: "/opt/tdarr/data"      # host path for Tdarr server data (DB)
+---
+# Tdarr Media PV (for library media mount)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tdarr-media-pv
+  namespace: apps
+spec:
+  capacity:
+    storage: 20900Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
+  hostPath:
+    path: "/mnt"                 # host path where NAS media is mounted (TV, Movies)
+

@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tdarr
+  namespace: apps
+  annotations:
+    kubernetes.io/ingress.class: traefik 
+    traefik.ingress.kubernetes.io/router.entrypoints: web 
+spec:
+  rules:
+    - host: tdarr.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: tdarr
+                port:
+                  number: 8265
