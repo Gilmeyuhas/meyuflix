@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yt-dlp-webui
+  namespace: utils
+  labels:
+    app: yt-dlp-webui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yt-dlp-webui
+  template:
+    metadata:
+      labels:
+        app: yt-dlp-webui
+    spec:
+      containers:
+        - name: webui
+          image: marcobaobao/yt-dlp-webui:latest
+          ports:
+            - containerPort: 3033
+          volumeMounts:
+            - name: downloads
+              mountPath: /downloads
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: downloads
+          hostPath:
+            path: /opt/meyuflix/downloads/ytdlp
+        - name: config
+          hostPath:
+            path: /opt/meyuflix/config/ytdlp
+

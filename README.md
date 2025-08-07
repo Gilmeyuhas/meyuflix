@@ -20,9 +20,9 @@ Each application is either deployed using **Helm** (e.g. official Helm charts or
 | [Homarr](https://github.com/ajnart/homarr)                                                    | Home dashboard                                          | Raw Manifests           | [`apps/homarr`](./apps/homarr)                   | ✅                    |
 | [Kubernetes Dashboard](https://github.com/kubernetes/dashboard)                               | Dashboard for K8s                                       | Raw Manifests           | [`apps/kubernetes-dashboard`](./apps/kubernetes-dashboard) | ✅          |
 | [Dashdot](https://github.com/MauriceNino/dashdot)                                             | Node metrics dashboard (used in Homarr)                 | Raw Manifests           | [`apps/dashdot`](./apps/dashdot)                 | ✅                    |
-| [Speedtest Tracker](https://github.com/henrywhitaker3/Speedtest-Tracker)                     | Internet speed monitor                                  | `soblivionscall` Helm Chart | [`apps/speedtest-tracker`](./apps/speedtest-tracker) | ✅             |
+| [Speedtest Tracker](https://github.com/henrywhitaker3/Speedtest-Tracker)                     | Internet speed monitor                                  | `soblivionscall` Helm Chart | [`utils/speedtest-tracker`](./apps/speedtest-tracker) | ✅             |
 | [Tdarr](https://github.com/HaveAGitGat/Tdarr)                                                 | Conditional media transcoding/remuxing                  | `haveagitgat` Helm Chart    | [`apps/tdarr`](./apps/tdarr)                     |  ✅                   |
-| [yt-dlp-webui](https://github.com/MaxelAmador/yt-dlp-web-ui)                                 | Download videos using yt-dlp with a Web UI              | TBC     | [`apps/yt-dlp-webui`](./apps/yt-dlp-webui)       | ❌                    |
+| [yt-dlp-webui](https://github.com/MaxelAmador/yt-dlp-web-ui)                                 | Download videos using yt-dlp with a Web UI              | Raw Manifests     | [`utils/yt-dlp-webui`](./apps/yt-dlp-webui)       | ✅                    |
 | [Watchtower](https://containrrr.dev/watchtower/)                                              | Automatic container update watcher                      | TBC     | [`apps/watchtower`](./apps/watchtower)           | ❌                    |
 
 ---
