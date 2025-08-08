@@ -1,19 +1,32 @@
-# Tdarr Helm values.yaml
+# Tdarr Helm values.yaml (server only)
 image:
   repository: ghcr.io/haveagitgat/tdarr
-  tag: latest
+  tag: 2.45.01
+  pullPolicy: IfNotPresent
 
 env:
   PUID: "1000"
   PGID: "1000"
   TZ: "Asia/Jerusalem"
+  # Point nodes at the in-cluster service
+  serverURL: "http://tdarr:8266"
+  NODE_OPTIONS: "--dns-result-order=ipv4first"
+  ffmpegPath: "/usr/local/bin/ffmpeg"
+  LIBVA_DRIVER_NAME: "iHD"
 
-## Disable Helm-managed ingress (we'll use our own ingress manifest)
 ingress:
   main:
     enabled: false
 
-## Persistence volumes for config, database, and media
+service:
+  main:
+    ports:
+      http:
+        port: 8265
+      server:
+        enabled: true
+        port: 8266
+
 persistence:
   config:
     enabled: true
@@ -29,13 +42,21 @@ persistence:
     enabled: true
     emptyDir: {}
 
-## Name override to simplify resource names
+podSecurityContext:
+  supplementalGroups:
+    - 993   # host "render" group GID
+
 fullnameOverride: "tdarr"
 
-## Make sure node uses correct version
+resources:
+  requests:
+    cpu: "250m"
+    memory: "256Mi"
+  limits:
+    cpu: "1"
+    memory: "1Gi"
+
+# Turn OFF the bundled node sidecar
 node:
-  enabled: true
-  image:
-    repository: ghcr.io/haveagitgat/tdarr_node
-    tag: 2.45.01
+  enabled: false
 
