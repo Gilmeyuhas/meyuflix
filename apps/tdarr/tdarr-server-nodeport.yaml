@@ -1,0 +1,16 @@
+# tdarr-server-nodeport.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: tdarr-server-nodeport
+  namespace: apps
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: tdarr
+  ports:
+    - name: server
+      port: 8266
+      targetPort: 8266
+      nodePort: 30266
+
