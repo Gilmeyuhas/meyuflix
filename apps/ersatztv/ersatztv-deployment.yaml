@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ersatztv
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ersatztv
+  template:
+    metadata:
+      labels:
+        app: ersatztv
+    spec:
+      hostNetwork: true
+      containers:
+      - name: ersatztv
+        image: jasongdove/ersatztv:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8409                      # ErsatzTV web UI port
+        volumeMounts:
+        - name: config-volume
+          mountPath: /root/.local/share/ersatztv   # persistent config directory inside container
+        - name: media-volume
+          mountPath: /media/tvshows                # mount NAS media here (read-only)
+          readOnly: true
+        env:
+        - name: TZ
+          value: "Asia/Jerusalem"                  # set your timezone
+      volumes:
+      - name: config-volume
+        persistentVolumeClaim:
+          claimName: ersatztv-config-claim
+      - name: media-volume
+        hostPath:
+          path: "/mnt/TV Shows"    # host path where NAS media is mounted
+          type: Directory
+
