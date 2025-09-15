@@ -17,7 +17,7 @@ spec:
         - name: agregarr
           image: ghcr.io/agregarr/agregarr:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 7171
           env:
             - name: TZ
               value: "Asia/Jerusalem"

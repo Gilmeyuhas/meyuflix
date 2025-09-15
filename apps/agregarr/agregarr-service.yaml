@@ -8,7 +8,7 @@ spec:
     app: agregarr
   ports:
     - name: http
-      port: 3000
-      targetPort: 3000
+      port: 7171
+      targetPort: 7171
       protocol: TCP
   type: ClusterIP
