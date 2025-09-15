@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agregarr
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agregarr
+  template:
+    metadata:
+      labels:
+        app: agregarr
+    spec:
+      containers:
+        - name: agregarr
+          image: ghcr.io/agregarr/agregarr:latest
+          ports:
+            - containerPort: 7171
+          env:
+            - name: TZ
+              value: "Asia/Jerusalem"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: agregarr-config-claim
