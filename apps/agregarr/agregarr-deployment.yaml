@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agregarr
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agregarr
+  template:
+    metadata:
+      labels:
+        app: agregarr
+    spec:
+      containers:
+        - name: agregarr
+          image: ghcr.io/linuxserver/agregarr:latest
+          ports:
+            - containerPort: 7171
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Asia/Jerusalem"
