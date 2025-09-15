@@ -23,7 +23,7 @@ spec:
               value: "Asia/Jerusalem"
           volumeMounts:
             - name: config
-              mountPath: /config
+              mountPath: /app/config
       volumes:
         - name: config
           persistentVolumeClaim:
