@@ -17,6 +17,7 @@ Each application is either deployed using **Helm** (e.g. official Helm charts or
 | [Prowlarr](https://wiki.servarr.com/prowlarr)                                                 | Indexer manager   | Official Helm Chart           | [`apps/prowlarr`](./apps/prowlarr)         | ❌ |
 | [ErsatzTV](https://ersatztv.org/)                                                             | Virtual live TV channels         | Raw Manifests                 | [`apps/ersatztv`](./apps/ersatztv)         | ✅ |
 | [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)                                       | Media request interface          | Raw Manifests                 | [`apps/jellyseerr`](./apps/jellyseerr)     | ✅ |
+| [Kometa](https://www.kometa.app/)                                                             | Library metadata overlays & collections | Raw Manifests                 | [`apps/kometa`](./apps/kometa)             | ✅ |
 | [Profilarr](https://github.com/saswatds/profilarr)                                            | Quality profile sync             | Raw Manifests                 | [`apps/profilarr`](./apps/profilarr)       | ✅ |
 | [Agregarr](https://github.com/agregarr/agregarr)                                              | Plex recommendations          | Raw Manifests                 | [`apps/agregarr`](./apps/agregarr)       | ✅ |
 | [Homarr](https://github.com/ajnart/homarr)                                                    | Home dashboard                   | Raw Manifests                 | [`apps/homarr`](./apps/homarr)             | ✅ |
@@ -45,6 +46,7 @@ meyuflix/
 │   ├── ersatztv/               # Raw manifests
 │   ├── homarr/                 # Raw manifests
 │   ├── jellyseerr/             # Raw manifests
+│   ├── kometa/                 # Raw manifests (Kometa + Kometa Quickstart)
 │   ├── kubernetes-dashboard/   # Raw manifests
 │   ├── profilarr/              # Raw manifests
 │   ├── prowlarr/               # Helm values.yaml (TBC)
@@ -101,7 +103,7 @@ helm upgrade --install speedtest-tracker soblivionscall/speedtest-tracker \
 ```
 ### 🔹 Raw Manifest Apps
 
-For Bazarr, ErsatzTV, Homarr, Jellyseerr, Profilarr, Dashdot, Kubernetes Dashboard, etc., apply their YAMLs manually:
+For Bazarr, ErsatzTV, Homarr, Jellyseerr, Kometa, Profilarr, Dashdot, Kubernetes Dashboard, etc., apply their YAMLs manually:
 
 ```bash
 kubectl apply -f apps/bazarr/
