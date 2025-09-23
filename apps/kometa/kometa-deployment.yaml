@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kometa
+  namespace: apps
+  labels: { app: kometa }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: kometa } }
+  template:
+    metadata: { labels: { app: kometa } }
+    spec:
+      containers:
+      - name: kometa
+        image: lscr.io/linuxserver/kometa:latest
+        imagePullPolicy: Always
+        env:
+        - { name: PUID, value: "1000" }
+        - { name: PGID, value: "1000" }
+        - { name: TZ,   value: "Asia/Jerusalem" }
+        - { name: HTTP_PROXY,  value: "http://192.168.1.148:3128" }
+        - { name: HTTPS_PROXY, value: "http://192.168.1.148:3128" }
+        volumeMounts:
+        - { name: config, mountPath: /config }
+      volumes:
+      - name: config
+        persistentVolumeClaim: { claimName: kometa-config-claim }
+

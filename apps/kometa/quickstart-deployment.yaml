@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kometa-quickstart
+  namespace: apps
+  labels: { app: kometa-quickstart }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: kometa-quickstart } }
+  template:
+    metadata: { labels: { app: kometa-quickstart } }
+    spec:
+      containers:
+      - name: quickstart
+        image: kometateam/quickstart:develop
+        imagePullPolicy: Always
+        env:
+        - { name: TZ, value: "Asia/Jerusalem" }
+        ports:
+        - { name: http, containerPort: 7171 }
+        volumeMounts:
+        - { name: qsdata, mountPath: /config }
+        - { name: kometa-config, mountPath: /kometa-config }
+      volumes:
+      - name: qsdata
+        persistentVolumeClaim: { claimName: kometa-quickstart-claim }
+      - name: kometa-config
+        persistentVolumeClaim: { claimName: kometa-config-claim }

@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kometa-config-pv
+spec:
+  capacity: { storage: 1Gi }
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: manual
+  persistentVolumeReclaimPolicy: Retain
+  hostPath: { path: /opt/kometa/config }
+  claimRef: { namespace: apps, name: kometa-config-claim }
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kometa-quickstart-pv
+spec:
+  capacity: { storage: 1Gi }
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: manual
+  persistentVolumeReclaimPolicy: Retain
+  hostPath: { path: /opt/kometa/quickstart }
+  claimRef: { namespace: apps, name: kometa-quickstart-claim }

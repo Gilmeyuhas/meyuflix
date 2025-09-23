@@ -1,0 +1,20 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kometa-config-claim
+  namespace: apps
+spec:
+  accessModes: [ "ReadWriteOnce" ]
+  resources: { requests: { storage: 1Gi } }
+  volumeName: kometa-config-pv
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kometa-quickstart-claim
+  namespace: apps
+spec:
+  accessModes: [ "ReadWriteOnce" ]
+  resources: { requests: { storage: 1Gi } }
+  volumeName: kometa-quickstart-pv
