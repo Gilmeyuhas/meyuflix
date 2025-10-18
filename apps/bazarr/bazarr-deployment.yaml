@@ -13,6 +13,7 @@ spec:
       labels:
         app: bazarr
     spec:
+      hostNetwork: true
       containers:
         - name: bazarr
           image: ghcr.io/linuxserver/bazarr:latest
