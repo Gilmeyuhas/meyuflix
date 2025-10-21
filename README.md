@@ -13,7 +13,6 @@ Each application is either deployed using **Helm** (e.g. official Helm charts or
 | [Bazarr](https://www.bazarr.media/)                                                           | Subtitle downloader              | Raw Manifests                 | [`apps/bazarr`](./apps/bazarr)             | ✅ |
 | [Sonarr](https://sonarr.tv/)                                                                  | TV episode automation   | Official Helm Chart           | [`apps/sonarr`](./apps/sonarr)             | ❌ |
 | [Radarr](https://radarr.video/)                                                               | Movie automation   | Official Helm Chart           | [`apps/radarr`](./apps/radarr)             | ❌ |
-| [qBittorrent](https://www.qbittorrent.org/)                                                   | Torrent client (headless)   | Official Helm Chart           | [`apps/qbittorrent`](./apps/qbittorrent)   | ❌ |
 | [Prowlarr](https://wiki.servarr.com/prowlarr)                                                 | Indexer manager   | Official Helm Chart           | [`apps/prowlarr`](./apps/prowlarr)         | ❌ |
 | [ErsatzTV](https://ersatztv.org/)                                                             | Virtual live TV channels         | Raw Manifests                 | [`apps/ersatztv`](./apps/ersatztv)         | ✅ |
 | [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)                                       | Media request interface          | Raw Manifests                 | [`apps/jellyseerr`](./apps/jellyseerr)     | ✅ |
@@ -26,6 +25,7 @@ Each application is either deployed using **Helm** (e.g. official Helm charts or
 | [Speedtest Tracker](https://github.com/henrywhitaker3/Speedtest-Tracker)                     | Internet speed monitor           | `soblivionscall` Helm Chart   | [`utils/speedtest-tracker`](./utils/speedtest-tracker) | ✅ |
 | [Tdarr](https://github.com/HaveAGitGat/Tdarr)                                                 | Conditional media transcoding/remuxing | `haveagitgat` Helm Chart | [`apps/tdarr`](./apps/tdarr)               | ✅ |
 | [yt-dlp-webui](https://github.com/MaxelAmador/yt-dlp-web-ui)                                 | Download videos using yt-dlp with a Web UI | Raw Manifests        | [`utils/yt-dlp`](./utils/yt-dlp)           | ✅ |
+| [Vert](https://github.com/vert-sh/vert)                                                       | File conversion utility       | Raw Manifests                 | [`utils/vert`](./utils/vert)               | ✅ |
 
 ---
 
@@ -50,7 +50,6 @@ meyuflix/
 │   ├── kubernetes-dashboard/   # Raw manifests
 │   ├── profilarr/              # Raw manifests
 │   ├── prowlarr/               # Helm values.yaml (TBC)
-│   ├── qbittorrent/            # Helm values.yaml (TBC)
 │   ├── radarr/                 # Helm values.yaml (TBC)
 │   ├── sonarr/                 # Helm values.yaml (TBC)
 │   └── tdarr/                  # Helm values + manifests
@@ -59,6 +58,7 @@ meyuflix/
 │   └── utils-namespace.yaml
 ├── utils/
 │   ├── speedtest-tracker/      # Helm values.yaml (soblivionscall)
+│   ├── vert/                   # Raw manifests
 │   └── yt-dlp/                 # Raw manifests
 └── README.md
 ```
@@ -69,7 +69,7 @@ meyuflix/
 
 ### 🔹 Helm-Based Apps
 
-For Sonarr, Radarr, qBittorrent, and Prowlarr (official charts):
+For Sonarr, Radarr, and Prowlarr (official charts):
 
 ```bash
 helm repo add arr-dev https://arr-dev.github.io/charts/
