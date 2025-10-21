@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vert-ingress
+  namespace: utils
+  labels:
+    app: vert
+spec:
+  rules:
+    - host: vert.home
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: vert 
+                port:
+                  number: 80
+

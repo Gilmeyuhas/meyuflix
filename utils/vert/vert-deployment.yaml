@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vert
+  namespace: utils
+  labels:
+    app: vert
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vert
+  template:
+    metadata:
+      labels:
+        app: vert
+    spec:
+      containers:
+        - name: vert
+          image: ghcr.io/vert-sh/vert:latest
+          ports:
+            - containerPort: 80
+
