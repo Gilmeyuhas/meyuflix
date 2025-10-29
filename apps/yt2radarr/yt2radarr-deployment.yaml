@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yt2radarr
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yt2radarr
+  template:
+    metadata:
+      labels:
+        app: yt2radarr
+    spec:
+      containers:
+      - name: yt2radarr
+        image: gillikesprogmetal/yt2radarr:latest
+        imagePullPolicy: Always
+
+        # Startup flow:
+        # 1. copy Secret cookie to /tmp/cookies.txt
+        # 2. lock it down to 600 (rw------- for current user)
+        # 3. start gunicorn
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            cp /etc/yt-cookies/cookies.txt /tmp/cookies.txt && \
+            chmod 600 /tmp/cookies.txt && \
+            exec gunicorn --bind 0.0.0.0:5000 app:app
+
+        ports:
+        - containerPort: 5000
+
+        env:
+        - name: TZ
+          value: "Asia/Jerusalem"
+
+        # persistent config dir for yt2radarr (config.json, jobs.json, etc.)
+        - name: YT2RADARR_CONFIG_DIR
+          value: "/config"
+
+        # tell the app/yt-dlp where to find cookies
+        # NOTE: now pointing to /tmp/cookies.txt
+        - name: YT_COOKIE_FILE
+          value: "/tmp/cookies.txt"
+
+        volumeMounts:
+        # PVC where the app stores config.json/jobs.json
+        - name: config-volume
+          mountPath: /config
+
+        # Radarr's movie library from the node
+        - name: media-volume
+          mountPath: /mnt/Movies
+
+        # Secret with your exported YouTube cookies (read-only)
+        - name: yt-cookies
+          mountPath: /etc/yt-cookies
+          readOnly: true
+
+      volumes:
+      # PVC for persistent app state
+      - name: config-volume
+        persistentVolumeClaim:
+          claimName: yt2radarr-config-claim
+
+      # hostPath that matches Radarr's library path
+      - name: media-volume
+        hostPath:
+          path: /mnt/Movies
+          type: Directory
+
+      # Secret containing youtube_cookies.txt
+      - name: yt-cookies
+        secret:
+          secretName: yt2radarr-cookies
+          items:
+          - key: cookies.txt
+            path: cookies.txt
+          # world-readable in the pod so we can cp it as non-root
+          defaultMode: 0444
+

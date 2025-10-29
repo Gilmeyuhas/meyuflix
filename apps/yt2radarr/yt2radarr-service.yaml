@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: yt2radarr
+  namespace: apps
+spec:
+  selector:
+    app: yt2radarr
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
+
