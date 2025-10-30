@@ -13,6 +13,7 @@ Each application is either deployed using **Helm** (e.g. official Helm charts or
 | [Bazarr](https://www.bazarr.media/)                                                           | Subtitle downloader              | Raw Manifests                 | [`apps/bazarr`](./apps/bazarr)             | ✅ |
 | [Sonarr](https://sonarr.tv/)                                                                  | TV episode automation   | Official Helm Chart           | [`apps/sonarr`](./apps/sonarr)             | ❌ |
 | [Radarr](https://radarr.video/)                                                               | Movie automation   | Official Helm Chart           | [`apps/radarr`](./apps/radarr)             | ❌ |
+| [YT2Radarr - a custom app built by me](https://github.com/Gilmeyuhas/yt2radarr)                                                            | Automates adding YouTube videos into Radarr   | Raw Manifests                 | [`apps/yt2radarr`](./apps/yt2radarr)        | ✅ |
 | [Prowlarr](https://wiki.servarr.com/prowlarr)                                                 | Indexer manager   | Official Helm Chart           | [`apps/prowlarr`](./apps/prowlarr)         | ❌ |
 | [ErsatzTV](https://ersatztv.org/)                                                             | Virtual live TV channels         | Raw Manifests                 | [`apps/ersatztv`](./apps/ersatztv)         | ✅ |
 | [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)                                       | Media request interface          | Raw Manifests                 | [`apps/jellyseerr`](./apps/jellyseerr)     | ✅ |
@@ -52,6 +53,7 @@ meyuflix/
 │   ├── prowlarr/               # Helm values.yaml (TBC)
 │   ├── radarr/                 # Helm values.yaml (TBC)
 │   ├── sonarr/                 # Helm values.yaml (TBC)
+│   ├── yt2radarr/              # Raw manifests for my custom YouTube→Radarr automation app
 │   └── tdarr/                  # Helm values + manifests
 ├── namespaces/
 │   ├── apps-namespace.yaml
