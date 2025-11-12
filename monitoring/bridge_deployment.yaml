@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-bridge
+  namespace: monitoring
+  labels:
+    app: prometheus-bridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-bridge
+  template:
+    metadata:
+      labels:
+        app: prometheus-bridge
+    spec:
+      containers:
+      - name: prometheus-bridge
+        image: gillikesprogmetal/prometheus-bridge:latest
+        env:
+          - name: PROM_API
+            value: "http://prometheus-server:9090/api/v1/query"
+        ports:
+          - containerPort: 5000
+
