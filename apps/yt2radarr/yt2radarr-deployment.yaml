@@ -54,6 +54,10 @@ spec:
         - name: media-volume
           mountPath: /mnt/Movies
 
+        # Radarr's TV library from the node
+        - name: tv-volume
+          mountPath: "/mnt/TV Shows"
+
         # Secret with your exported YouTube cookies (read-only)
         - name: yt-cookies
           mountPath: /etc/yt-cookies
@@ -69,6 +73,12 @@ spec:
       - name: media-volume
         hostPath:
           path: /mnt/Movies
+          type: Directory
+
+      # hostPath that matches Radarr's TV library path
+      - name: tv-volume
+        hostPath:
+          path: "/mnt/TV Shows"
           type: Directory
 
       # Secret containing youtube_cookies.txt
