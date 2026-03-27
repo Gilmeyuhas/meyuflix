@@ -51,8 +51,12 @@ spec:
           mountPath: /config
 
         # Radarr's movie library from the node
-        - name: media-volume
+        - name: movie-volume
           mountPath: /mnt/Movies
+
+        # TV library from the node
+        - name: tv-volume
+          mountPath: /mnt/TV Shows
 
         # Secret with your exported YouTube cookies (read-only)
         - name: yt-cookies
@@ -66,9 +70,15 @@ spec:
           claimName: yt2radarr-config-claim
 
       # hostPath that matches Radarr's library path
-      - name: media-volume
+      - name: movie-volume
         hostPath:
           path: /mnt/Movies
+          type: Directory
+
+      # hostPath that matches TV library path
+      - name: tv-volume
+        hostPath:
+          path: /mnt/TV Shows
           type: Directory
 
       # Secret containing youtube_cookies.txt
@@ -80,4 +90,3 @@ spec:
             path: cookies.txt
           # world-readable in the pod so we can cp it as non-root
           defaultMode: 0444
-
