@@ -20,7 +20,9 @@ spec:
         image: gillikesprogmetal/prometheus-bridge:latest
         env:
           - name: PROM_API
-            value: "http://prometheus-server:9090/api/v1/query"
+            value: http://kps-kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090/api/v1/query
+          - name: SPEEDTEST_TRACKER_URL
+            value: http://speedtest-tracker.utils.svc.cluster.local:8765
         ports:
           - containerPort: 5000
 
